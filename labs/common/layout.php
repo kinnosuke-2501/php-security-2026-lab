@@ -8,7 +8,7 @@ function lab_header(string $title, string $kind = '') {
     echo "<meta name='viewport' content='width=device-width,initial-scale=1'>";
     echo "<title>$title</title><style>
       body{font-family:system-ui,sans-serif;max-width:720px;margin:2rem auto;padding:0 1rem;line-height:1.6;color:#222}
-      .badge{padding:.2rem .6rem;border-radius:4px;font-size:.85rem;font-weight:bold}
+      .badge{display:inline-block;white-space:nowrap;padding:.2rem .6rem;border-radius:4px;font-size:.85rem;font-weight:bold}
       .badge.vuln{background:#ffe0e0;color:#b00020}
       .badge.safe{background:#e0f5e0;color:#0a7a2a}
       input,textarea{font-size:1rem;padding:.4rem;width:100%;box-sizing:border-box;margin:.3rem 0}
