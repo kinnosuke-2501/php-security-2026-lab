@@ -1,0 +1,29 @@
+# ローカル隔離環境の構成ファイル
+# 使い方:  docker compose up -d   で起動、 http://localhost:8080 を開く
+#          docker compose down -v  で停止＆データ削除（学習後は必ず実施）
+services:
+  web:
+    build: ./docker
+    container_name: php-sec-web
+    ports:
+      - "8080:80"          # ホストの8080番 -> コンテナの80番(Apache)
+    volumes:
+      - ./:/var/www/html   # このリポジトリをそのまま公開ディレクトリに割り当てる
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_NAME: vulnlab
+      DB_USER: labuser
+      DB_PASS: labpass
+
+  db:
+    image: mysql:8.0
+    container_name: php-sec-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: vulnlab
+      MYSQL_USER: labuser
+      MYSQL_PASSWORD: labpass
+    volumes:
+      - ./docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
